@@ -1,0 +1,85 @@
+# connected to MCP server: data-explorer
+# tool: search_countries  params=['query', 'limit']
+# tool: get_country_details  params=['name']
+
+> search_countries({"query": "turk"})
+  [
+    {
+      "name": "Turks and Caicos Islands",
+      "capital": "Cockburn Town",
+      "region": "Americas",
+      "population": 46855
+    },
+    {
+      "name": "Turkmenistan",
+      "capital": "Ashgabat",
+      "region": "Asia",
+      "population": 7618847
+    },
+    {
+      "name": "Türkiye",
+      "capital": "Ankara",
+      "region": "Asia",
+      "population": 85878556
+    }
+  ]
+
+> search_countries({"query": "japan", "limit": 1})
+  [
+    {
+      "name": "Japan",
+      "capital": "Tokyo",
+      "region": "Asia",
+      "population": 123366734
+    }
+  ]
+
+> get_country_details({"name": "Turkey"})
+  "{\n  \"found\": true,\n  \"name\": \"Türkiye\",\n  \"official_name\": \"Republic of Türkiye\",\n  \"capital\": \"Ankara\",\n  \"region\": \"Asia\",\n  \"subregion\": \"Western Asia\",\n  \"population\": 85878556,\n  \"area_km2\": 783562,\n  \"currencies\": [\n    {\n      \"code\": \"TRY\",\n      \"name\": \"Turkish lira\",\n      \"symbol\": \"₺\"\n    }\n  ],\n  \"languages\": [\n    \"Turkish\"\n  ],\n  \"borders\": [\n    {\n      \"code\": \"ARM\",\n      \"name\": \"Armenia\"\n    },\n    {\n      \"code\": \"AZE\",\n      \"name\": \"Azerbaijan\"\n    },\n    {\n      \"code\": \"BGR\",\n      \"name\": \"Bulgaria\"\n    },\n    {\n      \"code\": \"GEO\",\n      \"name\": \"Georgia\"\n    },\n    {\n      \"code\": \"GRC\",\n      \"name\": \"Greece\"\n    },\n    {\n      \"code\": \"IRN\",\n      \"name\": \"Iran\"\n    },\n    {\n      \"code\": \"IRQ\",\n      \"name\": \"Iraq\"\n    },\n    {\n      \"code\": \"SYR\",\n      \"name\": \"Syria\"\n    }\n  ],\n  \"landlocked\": false,\n  \"flag_url\": \"https://flagcdn.com/w320/tr.png\",\n  \"flag_emoji\": \"🇹🇷\"\n}"
+
+> get_country_details({"name": "Japan"})
+  "{\n  \"found\": true,\n  \"name\": \"Japan\",\n  \"official_name\": \"Japan\",\n  \"capital\": \"Tokyo\",\n  \"region\": \"Asia\",\n  \"subregion\": \"Eastern Asia\",\n  \"population\": 123366734,\n  \"area_km2\": 377930,\n  \"currencies\": [\n    {\n      \"code\": \"JPY\",\n      \"name\": \"Japanese yen\",\n      \"symbol\": \"¥\"\n    }\n  ],\n  \"languages\": [\n    \"Japanese\"\n  ],\n  \"borders\": [],\n  \"landlocked\": false,\n  \"flag_url\": \"https://flagcdn.com/w320/jp.png\",\n  \"flag_emoji\": \"🇯🇵\"\n}"
+
+> search_countries({"query": "   "})
+  [
+    {
+      "error": "query must not be empty"
+    }
+  ]
+
+> search_countries({"query": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"})
+  [
+    {
+      "error": "query must be at most 100 characters"
+    }
+  ]
+
+> search_countries({"query": "atlantis"})
+  []
+
+> search_countries({"query": "france", "limit": "many"})
+  [protocol-level error] Error executing tool search_countries: 1 validation error for search_countriesArguments
+limit
+  Input should be a valid integer, unable to parse string as an integer [type=int_parsing, input_value='ma
+
+> get_country_details({"name": ""})
+  "{\n  \"error\": \"name must not be empty\"\n}"
+
+> get_country_details({"name": "atlantis"})
+  "{\n  \"found\": false,\n  \"message\": \"no country matches 'atlantis'\",\n  \"suggestions\": []\n}"
+
+> get_country_details({"name": "republic"})
+  "{\n  \"found\": false,\n  \"ambiguous\": true,\n  \"message\": \"'republic' matches several countries; use a more specific name\",\n  \"candidates\": [\n    \"Afghanistan\",\n    \"Angola\",\n    \"Albania\",\n    \"Argentina\",\n    \"Armenia\",\n    \"Austria\",\n    \"Azerbaijan\",\n    \"Burundi\",\n    \"Benin\",\n    \"Bangladesh\"\n  ]\n}"
+
+> get_country_details({"name": "../../etc/passwd"})
+  "{\n  \"found\": false,\n  \"message\": \"no country matches '../../etc/passwd'\",\n  \"suggestions\": []\n}"
+
+> search_countries({"query": "japan"})
+  [
+    {
+      "name": "Japan",
+      "capital": "Tokyo",
+      "region": "Asia",
+      "population": 123366734
+    }
+  ]
