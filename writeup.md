@@ -1,4 +1,4 @@
-# Week 4 Write-up — Build a Custom MCP Server: The Data Explorer
+# Week 5 Write-up — Build a Custom MCP Server: The Data Explorer
 
 **Student:** Mohanad Kadadou (2309115218) · Python 3.12, `mcp` 1.30.0 (FastMCP), `httpx`, STDIO transport
 

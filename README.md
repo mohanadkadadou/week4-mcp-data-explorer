@@ -1,4 +1,4 @@
-# Week 4 — Data Explorer MCP server
+# Week 5 — Data Explorer MCP server
 
 An [MCP](https://modelcontextprotocol.io) server (FastMCP, **STDIO** transport) that gives an agent two tools for exploring country data.
 Student: Mohanad Kadadou (2309115218), JOB191 AI-Augmented Software Engineering.
